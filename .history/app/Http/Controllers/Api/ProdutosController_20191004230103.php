@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+use App\ProdutosModel;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ProdutosController extends Controller
+{
+    private $produtos;
+    
+    public function __construct(ProdutosModel $produtos){
+        $this->produtos = $produtos; 
+    }
+    //Listagem de todos os produtos
+    public  function index(){
+        return response()->json($this->produtos->paginate(null));
+    }
+    
+    //Listagem de produtos por ID
+    public function show(ProdutosModel $id){
+        $data = ['data'=> $id];
+        return response()->json($data);
+    }
+
+    //Cadastro de Produtos
+    public function store(Request $request){
+
+    }
+
+}
